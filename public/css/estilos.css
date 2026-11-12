@@ -1,0 +1,147 @@
+@font-face {
+    font-family: Roboto;
+    src: url("../fonts/Roboto.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+}
+
+:root {
+    color-scheme: light dark;
+    --fondo: #faf9f7;
+    --superficie: #ffffff;
+    --texto: #171717;
+    --secundario: #555555;
+    --borde: #767676;
+    --acento: #171717;
+    --acento-hover: #414141;
+    --sobre-acento: #ffffff;
+    --error: #8c2828;
+    --fondo-error: #fff3f1;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --fondo: #171717;
+        --superficie: #242424;
+        --texto: #f5f5f5;
+        --secundario: #cccccc;
+        --borde: #a5a5a5;
+        --acento: #f5f5f5;
+        --acento-hover: #d3d3d3;
+        --sobre-acento: #171717;
+        --error: #ffcdca;
+        --fondo-error: #462323;
+    }
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--fondo);
+    color: var(--texto);
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+}
+
+.cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 1.5rem clamp(1.25rem, 5vw, 4rem);
+    border-bottom: 1px solid var(--borde);
+}
+
+.marca {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.cabecera-descripcion {
+    color: var(--secundario);
+    font-size: 0.8rem;
+    text-align: right;
+}
+
+main {
+    width: min(100% - 2.5rem, 72rem);
+    margin: 0 auto;
+    padding: clamp(3rem, 8vw, 6rem) 0;
+}
+
+main.acceso {
+    max-width: 29rem;
+}
+
+h1, h2, h3 {
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+}
+
+h1 {
+    margin: 0 0 2.5rem;
+    font-size: clamp(2.4rem, 5vw, 3.5rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+}
+
+p, li {
+    overflow-wrap: anywhere;
+}
+
+a {
+    display: inline-flex;
+    align-items: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    color: var(--texto);
+    text-underline-offset: 0.25em;
+}
+
+a:hover {
+    text-decoration-thickness: 0.15em;
+}
+
+a:active {
+    text-decoration-style: double;
+}
+
+:focus-visible {
+    outline: 3px solid var(--texto);
+    outline-offset: 3px;
+}
+
+a[href], button, summary, select, label[for], input[type="checkbox"], input[type="radio"] {
+    cursor: pointer;
+}
+
+:disabled {
+    cursor: not-allowed;
+}
+
+[role="alert"] {
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--error);
+    background: var(--fondo-error);
+    color: var(--error);
+}
+
+[role="alert"] ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    a {
+        transition: text-underline-offset 180ms ease;
+    }
+
+    a:hover {
+        text-underline-offset: 0.4em;
+    }
+}

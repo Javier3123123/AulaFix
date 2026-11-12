@@ -1,0 +1,112 @@
+form {
+    margin: 2rem 0;
+}
+
+form p {
+    margin: 0 0 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+input, select, textarea, button {
+    font: inherit;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="reset"]),
+select, textarea {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 2.75rem;
+    padding: 0.55rem 0;
+    border: 0;
+    border-bottom: 1px solid var(--borde);
+    border-radius: 0;
+    background: transparent;
+    color: var(--texto);
+}
+
+textarea {
+    resize: vertical;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):focus,
+select:focus, textarea:focus {
+    border-bottom-color: var(--texto);
+}
+
+input[type="checkbox"], input[type="radio"] {
+    width: 1.2rem;
+    height: 1.2rem;
+    accent-color: var(--acento);
+}
+
+.opcion {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    min-height: 2.75rem;
+    margin: 0;
+    font-weight: 400;
+}
+
+.opcion input {
+    flex: none;
+    margin: 0;
+}
+
+form span[id] {
+    display: block;
+    margin-top: 0.35rem;
+    color: var(--secundario);
+    font-size: 0.9rem;
+}
+
+button, input[type="submit"], input[type="button"], input[type="reset"] {
+    min-height: 2.75rem;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--acento);
+    border-radius: 0;
+    background: var(--acento);
+    color: var(--sobre-acento);
+    font-weight: 400;
+    cursor: pointer;
+}
+
+form button, form input[type="submit"], form input[type="button"], form input[type="reset"] {
+    width: 100%;
+}
+
+button:hover, input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover {
+    background: var(--acento-hover);
+    text-decoration: underline;
+}
+
+button:active, input[type="submit"]:active, input[type="button"]:active, input[type="reset"]:active {
+    text-decoration: underline double;
+}
+
+button:disabled, input:disabled, select:disabled, textarea:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+    select, textarea {
+        transition: border-color 180ms ease;
+    }
+
+    button, input[type="submit"], input[type="button"], input[type="reset"] {
+        transition: background-color 180ms ease, transform 120ms ease;
+    }
+
+    button:active, input[type="submit"]:active, input[type="button"]:active, input[type="reset"]:active {
+        transform: scale(0.99);
+    }
+}
