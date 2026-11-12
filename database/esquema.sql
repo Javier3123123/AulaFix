@@ -10,10 +10,6 @@ COLLATE utf8mb4_unicode_ci;
 
 USE gestion_incidencias;
 
--- ==========================================
--- TABLA: usuarios
--- ==========================================
-
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -23,19 +19,11 @@ CREATE TABLE usuarios (
     creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- ==========================================
--- TABLA: equipos
--- ==========================================
-
 CREATE TABLE equipos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     codigo VARCHAR(20) NOT NULL UNIQUE,
     descripcion TEXT
 );
-
--- ==========================================
--- TABLA: incidencias
--- ==========================================
 
 CREATE TABLE incidencias (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -77,10 +65,6 @@ CREATE TABLE incidencias (
         REFERENCES usuarios(id)
 );
 
--- ==========================================
--- TABLA: historial
--- ==========================================
-
 CREATE TABLE historial (
     id INT AUTO_INCREMENT PRIMARY KEY,
     incidencia_id INT NOT NULL,
@@ -113,5 +97,5 @@ CREATE TABLE historial (
 );
 
 -- ==========================================
--- FIN DEL ESQUEMA
+-- FIN DEL SCHEMA
 -- ==========================================
