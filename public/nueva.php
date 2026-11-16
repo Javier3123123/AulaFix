@@ -106,7 +106,7 @@ $restaurarBorrador = $_SERVER['REQUEST_METHOD'] !== 'POST';
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="css/formularios.css">
     <link rel="stylesheet" href="css/incidencias.css">
-    <script src="js/nueva.js" defer></script>
+    <script type="module" src="js/nueva.js"></script>
 </head>
 <body>
     <header class="cabecera">

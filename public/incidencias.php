@@ -91,8 +91,8 @@ $estados = [
     <link rel="stylesheet" href="css/formularios.css">
     <link rel="stylesheet" href="css/incidencias.css">
     <link rel="stylesheet" href="css/avisos.css">
-    <script src="js/avisos.js" defer></script>
-    <script src="js/main.js" defer></script>
+    <script type="module" src="js/avisos.js"></script>
+    <script type="module" src="js/main.js"></script>
 </head>
 <body data-borrar-borrador="<?= $limpiarBorrador ? 'true' : 'false' ?>">
     <header class="cabecera">

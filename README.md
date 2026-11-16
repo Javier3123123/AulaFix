@@ -61,6 +61,23 @@ filtrar por estado y prioridad y ordenar por equipo, prioridad o fecha; guarda
 esas preferencias en el navegador. El formulario de alta cuenta caracteres y
 conserva un borrador local hasta que la incidencia se registra correctamente.
 
+## JavaScript del cliente
+
+Las páginas cargan módulos ES6 sin librerías ni peticiones `fetch`: el servidor
+incluye el JSON en el HTML y `main.js` inicia el panel. `incidencia.js` valida y
+modela cada registro; `vistas.js` calcula los resúmenes, filtra, ordena una copia
+de la lista y construye las filas con el DOM; `fechas.js` formatea y actualiza
+las fechas; `preferencias.js` centraliza `localStorage`; `nueva.js` gestiona el
+contador y el borrador. El borrador solo se elimina al confirmar el alta.
+
+El panel conserva la tabla PHP hasta que los módulos leen y validan los datos.
+Así el listado sigue disponible si JavaScript no carga o el JSON no es válido.
+El pintado usa `textContent` y `DocumentFragment`, no `innerHTML`.
+
+Se usó asistencia de IA para implementar y revisar el trabajo del cliente. El
+código se probó en el navegador y el equipo debe poder explicar sus decisiones
+en la defensa.
+
 La fuente Roboto se sirve localmente desde `public/fonts`; su licencia SIL Open
 Font License está en `public/fonts/OFL.txt`.
 

@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="css/formularios.css">
     <link rel="stylesheet" href="css/avisos.css">
-    <script src="js/avisos.js" defer></script>
+    <script type="module" src="js/avisos.js"></script>
 </head>
 <body>
     <header class="cabecera">

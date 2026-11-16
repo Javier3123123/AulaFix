@@ -177,7 +177,7 @@ $tokenCsrf = obtenerTokenCsrf();
     <link rel="stylesheet" href="css/formularios.css">
     <link rel="stylesheet" href="css/incidencias.css">
     <link rel="stylesheet" href="css/avisos.css">
-    <script src="js/avisos.js" defer></script>
+    <script type="module" src="js/avisos.js"></script>
 </head>
 <body>
     <header class="cabecera">
