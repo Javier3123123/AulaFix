@@ -2,6 +2,7 @@
  * Agrupa los avisos de una página y añade un control para cerrarlos.
  */
 const mensajes = document.querySelectorAll('[data-aviso]');
+// Solo se crea el contenedor cuando la página tiene avisos.
 if (mensajes.length > 0) {
     instalarContenedorAvisos(mensajes);
 }
@@ -16,6 +17,7 @@ function instalarContenedorAvisos(listaMensajes) {
     contenedor.className = 'avisos';
     listaMensajes[0].before(contenedor);
 
+    // Agrupa cada mensaje y le añade su propio botón para cerrarlo.
     for (const mensaje of listaMensajes) {
         const aviso = document.createElement('div');
         aviso.className = 'aviso';
@@ -48,6 +50,7 @@ function crearBotonCerrar(aviso, contenedor) {
  */
 function cerrarAviso(aviso, contenedor) {
     aviso.remove();
+    // Elimina también el contenedor para no dejar elementos vacíos en la página.
     if (!contenedor.hasChildNodes()) {
         contenedor.remove();
     }
