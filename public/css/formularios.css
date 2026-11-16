@@ -40,10 +40,33 @@ select:focus, textarea:focus {
     border-bottom-color: var(--texto);
 }
 
+input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not(:disabled):hover,
+select:not(:disabled):hover,
+textarea:not(:disabled):hover {
+    border-bottom-color: var(--texto);
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not(:disabled):active,
+select:not(:disabled):active,
+textarea:not(:disabled):active {
+    border-bottom-color: var(--texto);
+    background-color: var(--superficie);
+}
+
 input[type="checkbox"], input[type="radio"] {
     width: 1.2rem;
     height: 1.2rem;
     accent-color: var(--acento);
+}
+
+input[type="checkbox"]:not(:disabled):hover,
+input[type="radio"]:not(:disabled):hover {
+    box-shadow: 0 0 0 2px var(--superficie), 0 0 0 3px var(--borde);
+}
+
+input[type="checkbox"]:not(:disabled):active,
+input[type="radio"]:not(:disabled):active {
+    transform: scale(0.92);
 }
 
 .opcion {

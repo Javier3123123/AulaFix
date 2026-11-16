@@ -1,0 +1,287 @@
+.navegacion {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.navegacion a[aria-current="page"] {
+    font-weight: 700;
+    text-decoration-thickness: 0.15em;
+}
+
+.pie {
+    padding: 1rem clamp(1.25rem, 5vw, 4rem);
+    border-top: 1px solid var(--borde);
+    color: var(--secundario);
+    font-size: 0.9rem;
+}
+
+.pie p {
+    max-width: 72rem;
+    margin: 0 auto;
+}
+
+.tabla-contenedor {
+    max-width: 100%;
+    overflow-x: auto;
+    border-block: 1px solid var(--borde);
+}
+
+.tabla-contenedor:focus-visible {
+    outline-offset: 2px;
+}
+
+table {
+    width: 100%;
+    min-width: 54rem;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th, td {
+    padding: 0.8rem 0.9rem;
+    border-bottom: 1px solid var(--borde);
+    vertical-align: top;
+}
+
+th {
+    background: var(--superficie);
+    font-weight: 600;
+}
+
+tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.texto-secundario {
+    display: block;
+    color: var(--secundario);
+    font-size: 0.9rem;
+}
+
+.resumen-incidencias {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 0 0 2.5rem;
+}
+
+.resumen-incidencias article {
+    min-width: 0;
+    padding: 1rem;
+    border: 1px solid var(--borde);
+    background: var(--superficie);
+}
+
+.resumen-incidencias h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.resumen-incidencias p {
+    margin: 0;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+}
+
+.filtros-incidencias {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(12rem, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.pestanas-incidencias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--borde);
+}
+
+.pestanas-incidencias button {
+    width: auto;
+    min-height: 2.75rem;
+    padding: 0.5rem 0.75rem;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    background: transparent;
+    color: var(--texto);
+}
+
+.pestanas-incidencias button:hover {
+    background: var(--superficie);
+}
+
+.pestanas-incidencias button[aria-selected="true"] {
+    border-bottom-color: var(--texto);
+    font-weight: 700;
+}
+
+#tabla-cliente thead button {
+    min-height: 2.75rem;
+    padding: 0.4rem 0.5rem;
+    border: 0;
+    border-bottom: 1px solid var(--borde);
+    background: transparent;
+    color: var(--texto);
+    font-weight: 600;
+    text-align: left;
+}
+
+#tabla-cliente thead button:hover {
+    background: var(--fondo);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+.incidencia-urgente td {
+    background: var(--fondo-error);
+}
+
+.etiqueta-urgente {
+    display: inline-block;
+    margin-top: 0.25rem;
+    padding: 0.1rem 0.35rem;
+    border: 1px solid var(--error);
+    color: var(--error);
+    font-size: 0.85rem;
+}
+
+.descripcion-celda {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+#contador-incidencias {
+    min-height: 1.5em;
+    margin: 0 0 0.75rem;
+    color: var(--secundario);
+}
+
+#sin-resultados {
+    padding: 1rem 0;
+}
+
+main section h2 {
+    font-size: clamp(1.35rem, 3vw, 1.8rem);
+    font-weight: 500;
+}
+
+.formulario-incidencia {
+    max-width: 42rem;
+}
+
+.grupo-opciones {
+    min-width: 0;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    border: 0;
+}
+
+.grupo-opciones legend {
+    margin-bottom: 0.35rem;
+    font-size: 0.9rem;
+}
+
+.error-campo {
+    display: block;
+    margin-top: 0.35rem;
+    color: var(--error);
+    font-size: 0.9rem;
+}
+
+#contador-descripcion {
+    display: block;
+    margin-top: 0.35rem;
+    color: var(--secundario);
+    font-size: 0.9rem;
+    text-align: right;
+}
+
+[aria-invalid="true"] {
+    border-bottom-color: var(--error) !important;
+}
+
+.detalle-incidencia {
+    display: grid;
+    grid-template-columns: minmax(9rem, 1fr) minmax(0, 3fr);
+    gap: 0.8rem 1.5rem;
+    margin: 0 0 3rem;
+}
+
+.detalle-incidencia dt {
+    font-weight: 600;
+}
+
+.detalle-incidencia dd {
+    min-width: 0;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.descripcion-incidencia,
+.comentario-historial {
+    white-space: pre-wrap;
+}
+
+.historial {
+    margin: 0 0 3rem;
+    padding-left: 1.5rem;
+}
+
+.historial li {
+    padding: 0 0 1rem 0.4rem;
+}
+
+.historial li + li {
+    border-top: 1px solid var(--borde);
+    padding-top: 1rem;
+}
+
+.historial p {
+    margin: 0 0 0.4rem;
+}
+
+.formulario-borrar {
+    max-width: 24rem;
+    margin-top: 2rem;
+}
+
+.formulario-borrar button {
+    border-color: var(--error);
+    background: var(--error);
+}
+
+@media (max-width: 36rem) {
+    .resumen-incidencias {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .filtros-incidencias {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.75rem;
+    }
+
+    .detalle-incidencia {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.2rem;
+    }
+
+    .detalle-incidencia dd {
+        margin-bottom: 0.8rem;
+    }
+
+    th, td {
+        padding: 0.65rem;
+    }
+}
+
+@media (min-width: 36.01rem) and (max-width: 60rem) {
+    .resumen-incidencias {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
