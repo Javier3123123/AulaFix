@@ -27,6 +27,7 @@ function iniciarFormulario(form) {
         return;
     }
 
+    // En un POST se conservan los valores del servidor; en una carga normal se restaura el borrador.
     if (form.dataset.restaurarBorrador === 'true') {
         restaurarBorrador();
     } else {
@@ -93,6 +94,7 @@ function iniciarFormulario(form) {
             return;
         }
 
+        // Los desplegables pueden haber cambiado desde que se guardó el borrador.
         if (tieneOpcion(equipo, borrador.equipoId)) {
             equipo.value = borrador.equipoId;
         }
@@ -102,6 +104,7 @@ function iniciarFormulario(form) {
         for (const opcion of prioridad) {
             opcion.checked = opcion.value === borrador.prioridad;
         }
+        // El límite también protege frente a borradores guardados con una versión anterior.
         descripcion.value = Array.from(borrador.descripcion).slice(0, 500).join('');
     }
 
@@ -124,6 +127,7 @@ function iniciarFormulario(form) {
      * @returns {void}
      */
     function informarErrorAlmacenamiento(mensaje, error) {
+        // Un solo registro en consola basta aunque varios eventos vuelvan a fallar.
         if (!avisoAlmacenamientoMostrado) {
             console.error(mensaje, error);
             avisoAlmacenamientoMostrado = true;

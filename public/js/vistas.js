@@ -4,6 +4,7 @@
 import { Incidencia } from './incidencia.js';
 import { formatearFechaCompleta, formatearFechaRelativa } from './fechas.js';
 
+// Las etiquetas visibles se mantienen separadas de los valores estables del JSON.
 const etiquetas = {
     estados: {
         abierta: 'Abierta',
@@ -23,6 +24,7 @@ const etiquetas = {
     },
 };
 
+// Los pesos permiten ordenar prioridades de menor a mayor sin depender de sus etiquetas.
 const pesosPrioridad = { baja: 1, media: 2, alta: 3 };
 
 /**
@@ -96,6 +98,7 @@ export function filtrar(lista, criterios) {
         const coincideEstado = criterios.pestana === 'todas' || incidencia.estado === criterios.pestana;
         const coincidePrioridad = criterios.prioridad === 'todas'
             || incidencia.prioridad === criterios.prioridad;
+        // La búsqueda cubre equipo, descripción y autor, sin distinguir mayúsculas ni tildes.
         const texto = normalizar(`${incidencia.equipo} ${incidencia.descripcion} ${incidencia.autor}`);
         return coincideEstado && coincidePrioridad && texto.includes(termino);
     }
@@ -128,6 +131,7 @@ export function ordenar(lista, campo, direccion) {
             comparacion = Date.parse(primera.creada_en) - Date.parse(segunda.creada_en);
         }
 
+        // El ID hace determinista el orden cuando dos registros coinciden en el campo elegido.
         if (comparacion === 0) {
             comparacion = primera.id - segunda.id;
         }

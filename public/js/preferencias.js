@@ -4,6 +4,8 @@
 const CLAVE_PREFERENCIAS = 'aulafix.incidencias.v1';
 const CLAVE_BORRADOR = 'aulafix.nueva-incidencia.borrador.v1';
 
+// Las claves separan las preferencias del panel del contenido del borrador.
+
 /**
  * Lee las preferencias del panel.
  * @returns {Record<string, unknown>}

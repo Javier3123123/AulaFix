@@ -2,6 +2,7 @@
 
 session_start();
 
+// La sesión debe identificar al usuario y su rol antes de mostrar el detalle.
 if (!isset($_SESSION['usuario_id'], $_SESSION['rol'])) {
     header('Location: login.php', true, 303);
     exit;
@@ -9,6 +10,7 @@ if (!isset($_SESSION['usuario_id'], $_SESSION['rol'])) {
 
 require_once __DIR__ . '/../includes/funciones.php';
 
+// Los formularios envían el identificador en POST; las consultas lo reciben en la URL.
 $idEntrada = $_SERVER['REQUEST_METHOD'] === 'POST' ? ($_POST['id'] ?? '') : ($_GET['id'] ?? '');
 $id = is_string($idEntrada)
     ? filter_var($idEntrada, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]])
@@ -18,6 +20,7 @@ if ($id === false) {
     exit('El identificador de incidencia no es válido.');
 }
 
+// Las claves corresponden a los valores guardados en la base de datos.
 $estados = [
     'abierta' => 'Abierta',
     'en_curso' => 'En curso',
@@ -38,12 +41,14 @@ $error = '';
 $errores = [];
 $incidencia = null;
 $historial = [];
+// Se conservan los valores enviados para volver a mostrarlos si la validación falla.
 $estadoNuevo = isset($_POST['estado']) && is_string($_POST['estado']) ? $_POST['estado'] : '';
 $comentario = isset($_POST['comentario']) && is_string($_POST['comentario']) ? $_POST['comentario'] : '';
 
 try {
     require __DIR__ . '/../includes/db.php';
 
+    // Carga también el equipo y el autor que necesita la vista del detalle.
     $consulta = $db->prepare(
         'SELECT i.id, i.equipo_id, e.codigo AS equipo_codigo, e.descripcion AS equipo_descripcion,
                 i.usuario_id, u.nombre AS usuario_nombre, i.categoria, i.prioridad,
@@ -67,6 +72,7 @@ try {
             $accion = isset($_POST['accion']) && is_string($_POST['accion']) ? $_POST['accion'] : '';
 
             if ($accion === 'borrar') {
+                // La autorización se comprueba en el servidor aunque no se muestre el botón.
                 if ($_SESSION['rol'] !== 'profesor') {
                     http_response_code(403);
                     $error = 'Solo el profesorado puede borrar incidencias.';
@@ -96,6 +102,7 @@ try {
 
                     if (!$errores) {
                         try {
+                            // El bloqueo conserva el estado anterior mientras se guarda el cambio y su historial.
                             $db->beginTransaction();
                             $consulta = $db->prepare('SELECT estado FROM incidencias WHERE id = :id FOR UPDATE');
                             $consulta->execute(['id' => $id]);
@@ -146,6 +153,7 @@ try {
     }
 
     if ($incidencia) {
+        // El ID desempata fechas iguales para que el historial conserve un orden estable.
         $consulta = $db->prepare(
             'SELECT h.estado_anterior, h.estado_nuevo, h.comentario, h.creado_en,
                     u.nombre AS usuario_nombre
@@ -163,6 +171,7 @@ try {
     $error = 'No se pudo completar la operación. Inténtalo más tarde.';
 }
 
+// El aviso temporal se muestra una sola vez y luego se elimina de la sesión.
 $aviso = isset($_SESSION['aviso']) && is_string($_SESSION['aviso']) ? $_SESSION['aviso'] : '';
 unset($_SESSION['aviso']);
 $tokenCsrf = obtenerTokenCsrf();
@@ -198,6 +207,7 @@ $tokenCsrf = obtenerTokenCsrf();
             <p role="alert"><?= h($error) ?></p>
         <?php endif; ?>
 
+        <?php // Se escapa el contenido antes de convertir los saltos de línea en etiquetas HTML. ?>
         <?php if ($incidencia): ?>
             <dl class="detalle-incidencia">
                 <dt>Número</dt><dd><?= (int) $incidencia['id'] ?></dd>

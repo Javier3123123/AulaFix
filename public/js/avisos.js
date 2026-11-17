@@ -14,6 +14,7 @@ if (mensajes.length > 0) {
 function instalarContenedorAvisos(listaMensajes) {
     const contenedor = document.createElement('div');
     contenedor.className = 'avisos';
+    // El primer aviso fija el punto de inserción y conserva el orden del documento.
     listaMensajes[0].before(contenedor);
 
     for (const mensaje of listaMensajes) {

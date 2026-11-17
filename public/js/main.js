@@ -30,6 +30,7 @@ function iniciarPanel() {
         console.error(mensaje, error);
     }
 
+    // nueva.php activa esta marca después de guardar para limpiar el borrador local.
     if (document.body.dataset.borrarBorrador === 'true') {
         try {
             borrarBorrador();
@@ -90,14 +91,17 @@ function iniciarPanel() {
         return;
     }
 
+    // La vista PHP permanece visible hasta que los datos del panel se validan y se pintan.
     panel.hidden = false;
     vistaServidor.hidden = true;
+    // Pestañas y cabeceras delegan eventos; los campos de filtro escuchan su propio control.
     pestañas.addEventListener('click', manejarClickPestanas);
     pestañas.addEventListener('keydown', manejarTecladoPestanas);
     busqueda.addEventListener('input', manejarBusqueda);
     filtroPrioridad.addEventListener('change', manejarPrioridad);
     tabla.addEventListener('click', manejarOrden);
 
+    // Actualiza solo las etiquetas de fecha y libera el temporizador al salir de la página.
     const intervaloFechas = window.setInterval(actualizarFechas, 60_000);
     window.addEventListener('pagehide', detenerIntervalo, { once: true });
 

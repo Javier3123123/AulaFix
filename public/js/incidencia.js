@@ -10,10 +10,12 @@ export class Incidencia {
      * @throws {TypeError} Si los datos no cumplen el contrato del panel.
      */
     constructor(datos) {
+        // Los valores categóricos deben coincidir con las claves del JSON generado por PHP.
         const categorias = ['hardware', 'software', 'red', 'otro'];
         const prioridades = ['baja', 'media', 'alta'];
         const estados = ['abierta', 'en_curso', 'resuelta'];
 
+        // Valida tipos y valores enumerados antes de crear el modelo.
         if (datos === null || typeof datos !== 'object' || Array.isArray(datos)
             || !Number.isInteger(datos.id)
             || typeof datos.equipo !== 'string'
@@ -39,8 +41,10 @@ export class Incidencia {
         this.estado = datos.estado;
         this.autor = datos.autor;
         this.creada_en = datos.creada_en;
+        // La fecha privada evita depender de una fecha mutable al calcular días abiertos.
         this.#fechaCreacion = fechaCreacion;
 
+        // Los modelos se comparten entre filtros y vistas sin permitir cambios accidentales.
         Object.freeze(this);
     }
 
@@ -61,6 +65,7 @@ export class Incidencia {
             return 0;
         }
 
+        // Las diferencias negativas se limitan a cero si el reloj adelanta la creación.
         const milisegundosPorDia = 24 * 60 * 60 * 1000;
         return Math.max(0, Math.floor((Date.now() - this.#fechaCreacion.getTime()) / milisegundosPorDia));
     }
