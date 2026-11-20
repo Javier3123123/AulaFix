@@ -25,6 +25,10 @@ CREATE TABLE equipos (
     descripcion TEXT
 );
 
+INSERT INTO equipos (codigo, descripcion) VALUES
+('EQ001', 'Informática'),
+('EQ002', 'Mantenimiento');
+
 CREATE TABLE incidencias (
     id INT AUTO_INCREMENT PRIMARY KEY,
     equipo_id INT NOT NULL,
